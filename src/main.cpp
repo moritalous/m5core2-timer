@@ -46,7 +46,11 @@ void createDial()
   }
   dial.fillCircle(x, y, 100, TFT_WHITE);
 
-  dial.drawLine(x, y, x, y - 100, TFT_BLACK);
+  dial.setTextColor(TFT_BLACK);
+  dial.drawCentreString("3", 210, 110, FONT4);
+  dial.drawCentreString("9", 30, 110, FONT4);
+  dial.drawCentreString("12", 120, 20, FONT4);
+  dial.drawCentreString("6", 120, 200, FONT4);
 }
 
 void createPng()
@@ -59,7 +63,7 @@ void createPng()
 void drawMoji(String str)
 {
   moji.fillScreen(TFT_WHITE);
-  moji.drawCentreString(str, 50, 140, FONT4);
+  moji.drawCentreString(str, 30, 80, FONT6);
 
   moji.pushRotated(&sprite, i_deg);
 }
@@ -87,7 +91,7 @@ void setup(void)
   createDial();
   createPng();
 
-  moji.createSprite(100, 200);
+  moji.createSprite(60, 120);
 }
 
 void update_i_deg()
@@ -144,6 +148,12 @@ void loop()
   if (mode == 1 && count < 1)
   {
     mode = 2;
+  }
+
+  if (mode == 2 && M5.Touch.ispressed())
+  {
+    mode = 0;
+    sleep(1);
   }
 
   switch (mode)
